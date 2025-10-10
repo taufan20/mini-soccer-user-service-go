@@ -1,0 +1,21 @@
+{
+  "port": 8081,
+  "appName": "user-service",
+  "appEnv": "local",
+  "signatureKey": "1234567890",
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "username": "root",
+    "password": "taufan20",
+    "name": "user_service",
+    "maxOpenConnection": 10,
+    "maxLifetimeConnection": 10,
+    "maxIdleConnection": 10,
+    "maxIdleTime": 10
+  },
+  "rateLimiterMaxRequest": 1000,
+  "rateLimiterTimeSecond": 60,
+  "jwtSecretKey": "1234567890",
+  "jwtExpireTime": 1440
+}
