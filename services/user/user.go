@@ -24,6 +24,7 @@ type IUserService interface {
 	Register(context.Context, *dto.RegisterRequest) (*dto.RegisterResponse, error)
 	Update(context.Context, *dto.UpdateRequest, string) (*dto.UserResponse, error)
 	GetUserLogin(context.Context, string) (*dto.UserResponse, error)
+	GetUserByUUID(context.Context, string) (*dto.UserResponse, error)
 }
 
 type Claims struct {
