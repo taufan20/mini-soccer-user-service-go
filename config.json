@@ -7,7 +7,7 @@
     "host": "localhost",
     "port": 5432,
     "username": "root",
-    "password": "taufan20",
+    "password": "barca1899",
     "name": "user_service",
     "maxOpenConnection": 10,
     "maxLifetimeConnection": 10,

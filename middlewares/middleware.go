@@ -95,7 +95,7 @@ func validateBearerToken(c *gin.Context, token string) error {
 	}
 
 	claims := &services.Claims{}
-	tokenJwt, err := jwt.ParseWithClaims(tokenString, &claims, func(token *jwt.Token) (interface{}, error) {
+	tokenJwt, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
 		_, ok := token.Method.(*jwt.SigningMethodHMAC)
 		if !ok {
 			return nil, errConstant.ErrUnauthorized
