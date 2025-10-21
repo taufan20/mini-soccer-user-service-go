@@ -87,7 +87,7 @@ var command = &cobra.Command{
 		route := routes.NewRouteRegistry(controller, group)
 		route.Serve()
 
-		port := fmt.Sprintf("%d", config.Config.Port)
+		port := fmt.Sprintf(":%d", config.Config.Port)
 		err = router.Run(port)
 		if err != nil {
 			panic(err)

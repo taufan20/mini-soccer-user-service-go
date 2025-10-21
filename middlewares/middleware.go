@@ -73,6 +73,8 @@ func validateAPIKey(c *gin.Context) error {
 	signatureKey := config.Config.SignatureKey
 
 	validateKey := fmt.Sprintf("%s:%s:%s", serviceName, signatureKey, requestAt)
+	logrus.Error("Validate Key:%s ", validateKey)
+
 	hash := sha256.New()
 	hash.Write([]byte(validateKey))
 	resultHash := hex.EncodeToString(hash.Sum(nil))
@@ -121,18 +123,21 @@ func Authenticate() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		var err error
 		token := c.GetHeader(constants.Authorization)
-		if token != "" {
+		fmt.Println("Token: ", token)
+		if token == "" {
 			responseUnauthorized(c, errConstant.ErrUnauthorized.Error())
 			return
 		}
 
 		err = validateBearerToken(c, token)
+		fmt.Println("Validate Bearer Token: ", err.Error())
 		if err != nil {
 			responseUnauthorized(c, err.Error())
 			return
 		}
 
 		err = validateAPIKey(c)
+		fmt.Println("Validate API Key: ", err.Error())
 		if err != nil {
 			responseUnauthorized(c, err.Error())
 			return

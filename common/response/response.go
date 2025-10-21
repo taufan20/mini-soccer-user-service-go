@@ -10,7 +10,7 @@ import (
 
 type Response struct {
 	Status  string      `json:"status"`
-	Message string      `json:"message"`
+	Message any         `json:"message"`
 	Data    interface{} `json:"data"`
 	Token   *string     `json:"token,omitempty"`
 }
@@ -25,16 +25,18 @@ type ParamHTTPResp struct {
 }
 
 func HttpResponse(param ParamHTTPResp) {
-	if param.Err != nil {
+
+	if param.Err == nil {
 		param.Gin.JSON(param.Code, Response{
 			Status:  constants.Success,
 			Message: http.StatusText(http.StatusOK),
 			Data:    param.Data,
 			Token:   param.Token,
 		})
+		return
 	}
-	message := errConstant.ErrInternalServerError.Error()
 
+	message := errConstant.ErrInternalServerError.Error()
 	if param.Message != nil {
 		message = *param.Message
 	} else if param.Err != nil {

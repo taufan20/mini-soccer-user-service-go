@@ -23,7 +23,7 @@ type IUserService interface {
 	Login(context.Context, *dto.LoginRequest) (*dto.LoginResponse, error)
 	Register(context.Context, *dto.RegisterRequest) (*dto.RegisterResponse, error)
 	Update(context.Context, *dto.UpdateRequest, string) (*dto.UserResponse, error)
-	GetUserLogin(context.Context, string) (*dto.UserResponse, error)
+	GetUserLogin(context.Context) (*dto.UserResponse, error)
 	GetUserByUUID(context.Context, string) (*dto.UserResponse, error)
 }
 
@@ -224,7 +224,7 @@ func (u *UserService) Update(ctx context.Context, request *dto.UpdateRequest, uu
 
 }
 
-func (u *UserService) GetUserLogin(ctx context.Context, uuid string) (*dto.UserResponse, error) {
+func (u *UserService) GetUserLogin(ctx context.Context) (*dto.UserResponse, error) {
 	var (
 		userLogin = ctx.Value(constants.UserLogin).(*dto.UserResponse)
 		data      dto.UserResponse

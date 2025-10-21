@@ -169,7 +169,7 @@ func (u *UserController) Update(ctx *gin.Context) {
 }
 
 func (u *UserController) GetUserLogin(ctx *gin.Context) {
-	user, err := u.service.GetUser().GetUserLogin(ctx, ctx.Param("username"))
+	user, err := u.service.GetUser().GetUserLogin(ctx.Request.Context())
 	if err != nil {
 		response.HttpResponse(response.ParamHTTPResp{
 			Code: http.StatusBadRequest,
