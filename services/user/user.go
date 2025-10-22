@@ -225,6 +225,7 @@ func (u *UserService) Update(ctx context.Context, request *dto.UpdateRequest, uu
 }
 
 func (u *UserService) GetUserLogin(ctx context.Context) (*dto.UserResponse, error) {
+
 	var (
 		userLogin = ctx.Value(constants.UserLogin).(*dto.UserResponse)
 		data      dto.UserResponse
